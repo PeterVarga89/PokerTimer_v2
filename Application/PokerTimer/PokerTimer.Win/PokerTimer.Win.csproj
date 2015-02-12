@@ -113,7 +113,6 @@
   <ItemGroup>
     <Folder Include="Converters\" />
     <Folder Include="Icons\" />
-    <Folder Include="Images\" />
     <Folder Include="Other\" />
     <Folder Include="Styles\" />
     <Folder Include="Templates\" />
@@ -134,6 +133,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\backgrounds\bg_001.jpg" />
+    <Resource Include="Images\backgrounds\bg_002.jpg" />
+    <Resource Include="Images\backgrounds\bg_003.jpg" />
+    <Resource Include="Images\backgrounds\bg_004.jpg" />
+    <Resource Include="Images\backgrounds\bg_005.jpg" />
+    <Resource Include="Images\backgrounds\bg_006.jpg" />
+    <Resource Include="Images\backgrounds\bg_007.jpg" />
+    <Resource Include="Images\backgrounds\bg_008.jpg" />
+    <Resource Include="Images\backgrounds\bg_009.jpg" />
+    <Resource Include="Images\backgrounds\bg_010.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
