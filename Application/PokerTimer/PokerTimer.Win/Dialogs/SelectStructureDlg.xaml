@@ -1,0 +1,23 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.SelectStructureDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DarkWindowStyle}"
+        xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        Title="Select Structure"
+        Height="300"
+        Width="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Height="300" DisplayMemberPath="Name" Name="lbxTournaments" Grid.Column="0" Grid.Row="0" Margin="2"></ListBox>
+        <wpfx:BusyIndicator Name="busy" Grid.Column="0" Grid.Row="0" DisplayAfter="0" BusyContent="Počkajte prosím"></wpfx:BusyIndicator>
+
+        <StackPanel Grid.Column="1" Margin="0,2,2,2" Orientation="Vertical" Grid.Row="0">
+            <Button Style="{StaticResource LightButtonStyle}" IsEnabled="{Binding IsSelected}" HorizontalAlignment="Stretch" Margin="0,0,0,5" Height="26" Content="Prepojiť" Click="btnJoinClick" />
+        </StackPanel>
+    </Grid>
+</Window>

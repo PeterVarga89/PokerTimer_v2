@@ -16,6 +16,7 @@ debug
 *.pubxml
 *.favdoc
 *.zip
+*.sql
 debug
 *Publish.xml
 /Publish/*

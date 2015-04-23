@@ -1,0 +1,218 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.TournamentSettingsDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Nastavenie turnaja"
+        Style="{StaticResource DarkWindowStyle}"
+        WindowStartupLocation="CenterScreen"
+        Width="700">
+    <Window.Resources>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="0,2,0,2" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="BorderBrush" Value="DarkGray" />
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="Background" Value="Gray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Right"></Setter>
+            <Setter Property="Margin" Value="0,0,4,0"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Foreground" Value="LightGray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="105" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="105" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="105" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+            <RowDefinition Height="26" />
+        </Grid.RowDefinitions>
+
+        <!--BuyInPrize-->
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Grid.Row="0" Grid.Column="0" Text="Cena buy in" />
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="0" Grid.Column="0" Text="First Chance" />
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.BuyInPrize, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--ReBuyPrize-->
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Grid.Row="1" Grid.Column="0" Text="Cena re buy" />
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="1" Grid.Column="0" Text="Second Chance" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.ReBuyPrize, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--ReBuyPrize-->
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Grid.Row="2" Grid.Column="0" Text="Cena add on" />
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="2" Grid.Column="0" Text="Third Chance" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.AddOnPrize, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--BuyIn Stack-->
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Grid.Row="4" Grid.Column="0" Text="Stack buy in" />
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="4" Grid.Column="0" Text="Stack First Ch." />
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.BuyInStack, Mode=OneWay}" IsEnabled="False" />
+
+        <!--ReBuy Stack-->
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Grid.Row="5" Grid.Column="0" Text="Stack re buy" />
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="5" Grid.Column="0" Text="Stack Second Ch." />
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.ReBuyStack, Mode=OneWay}" IsEnabled="False" />
+
+        <!--AddOn Stack-->
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToReverzeVisibilityConverter}}" Grid.Row="6" Grid.Column="0" Text="Stack add on" />
+        <TextBlock Visibility="{Binding IsChanceVisible, Converter={StaticResource BoolToVisibilityConverter}}" Grid.Row="6" Grid.Column="0" Text="Stack Third Ch." />
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.AddOnStack, Mode=OneWay}" IsEnabled="False" />
+
+        <!--Time Bonus Stack-->
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Time bonus stack" />
+        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.BonusStack, Mode=OneWay}" IsEnabled="False" />
+
+        <!--GTD-->
+        <TextBlock Grid.Row="9" Grid.Column="0" Text="GTD" />
+        <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Tournament.TournamentDetail.GTD, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--League-->
+        <TextBlock Grid.Row="10" Grid.Column="0" Text="Liga" />
+        <TextBox Grid.Row="10" Grid.Column="1" Text="{Binding League, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}"  IsEnabled="False" />
+
+        <!--Rake-->
+        <TextBlock Grid.Row="11" Grid.Column="0" Text="Rake" />
+        <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding Rake, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}"  IsEnabled="False" />
+
+        <!--Rake-->
+        <TextBlock Grid.Row="12" Grid.Column="0" Text="Dotácia" />
+        <TextBox Grid.Row="12" Grid.Column="1" Text="{Binding Dotation, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--MoneyPool-->
+        <TextBlock Grid.Row="0" Grid.Column="3" Text="Moneypool" />
+        <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding MoneyPool, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--PrizePool-->
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="Prizepool" />
+        <TextBox Grid.Row="1" Grid.Column="4" Text="{Binding PrizePool, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--WinnerMoney-->
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="Ceny" />
+        <TextBox Grid.Row="2" Grid.Column="4" Text="{Binding WinnerMoney, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--Auto-->
+        <TextBlock Grid.Row="0" Grid.Column="6" Text="Auto" />
+        <RadioButton Grid.Row="0" IsChecked="{Binding IsAuto, Mode=TwoWay}" Grid.Column="7" VerticalAlignment="Center" Margin="0,2,0,0" GroupName="mode" />
+
+        <!--Manual-->
+        <TextBlock Grid.Row="1" Grid.Column="6" Text="Manual" />
+        <RadioButton Grid.Row="1" IsChecked="{Binding IsManual, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="7" VerticalAlignment="Center" Margin="0,2,0,0" GroupName="mode" />
+
+        <!--1. place-->
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="01. Cena" />
+        <TextBox Grid.Row="3" Grid.Column="4" Text="{Binding Place01, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--2. place-->
+        <TextBlock Grid.Row="4" Grid.Column="3" Text="02. Cena" />
+        <TextBox Grid.Row="4" Grid.Column="4" Text="{Binding Place02, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--3. place-->
+        <TextBlock Grid.Row="5" Grid.Column="3" Text="03. Cena" />
+        <TextBox Grid.Row="5" Grid.Column="4" Text="{Binding Place03, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--4. place-->
+        <TextBlock Grid.Row="6" Grid.Column="3" Text="04. Cena" />
+        <TextBox Grid.Row="6" Grid.Column="4" Text="{Binding Place04, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--5. place-->
+        <TextBlock Grid.Row="7" Grid.Column="3" Text="05. Cena" />
+        <TextBox Grid.Row="7" Grid.Column="4" Text="{Binding Place05, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--6. place-->
+        <TextBlock Grid.Row="8" Grid.Column="3" Text="06. Cena" />
+        <TextBox Grid.Row="8" Grid.Column="4" Text="{Binding Place06, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--7. place-->
+        <TextBlock Grid.Row="9" Grid.Column="3" Text="07. Cena" />
+        <TextBox Grid.Row="9" Grid.Column="4" Text="{Binding Place07, Mode=TwoWay}" IsEnabled="{Binding IsManual, Mode=TwoWay}" />
+
+        <!--8. place-->
+        <TextBlock Grid.Row="10" Grid.Column="3" Text="08. Cena" />
+        <TextBox Grid.Row="10" Grid.Column="4" Text="{Binding Place08, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--9. place-->
+        <TextBlock Grid.Row="11" Grid.Column="3" Text="09. Cena" />
+        <TextBox Grid.Row="11" Grid.Column="4" Text="{Binding Place09, Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--10. place-->
+        <TextBlock Grid.Row="12" Grid.Column="3" Text="10. Cena" />
+        <TextBox Grid.Row="12" Grid.Column="4" Text="{Binding Places[9], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--11. place-->
+        <TextBlock Grid.Row="3" Grid.Column="6" Text="11. Cena" />
+        <TextBox Grid.Row="3" Grid.Column="7" Text="{Binding Places[10], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--12. place-->
+        <TextBlock Grid.Row="4" Grid.Column="6" Text="12. Cena" />
+        <TextBox Grid.Row="4" Grid.Column="7" Text="{Binding Places[11], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--13. place-->
+        <TextBlock Grid.Row="5" Grid.Column="6" Text="13. Cena" />
+        <TextBox Grid.Row="5" Grid.Column="7" Text="{Binding Places[12], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--14. place-->
+        <TextBlock Grid.Row="6" Grid.Column="6" Text="14. Cena" />
+        <TextBox Grid.Row="6" Grid.Column="7" Text="{Binding Places[13], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--15. place-->
+        <TextBlock Grid.Row="7" Grid.Column="6" Text="15. Cena" />
+        <TextBox Grid.Row="7" Grid.Column="7" Text="{Binding Places[14], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--16. place-->
+        <TextBlock Grid.Row="8" Grid.Column="6" Text="16. Cena" />
+        <TextBox Grid.Row="8" Grid.Column="7" Text="{Binding Places[15], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--17. place-->
+        <TextBlock Grid.Row="9" Grid.Column="6" Text="17. Cena" />
+        <TextBox Grid.Row="9" Grid.Column="7" Text="{Binding Places[16], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--18. place-->
+        <TextBlock Grid.Row="10" Grid.Column="6" Text="18. Cena" />
+        <TextBox Grid.Row="10" Grid.Column="7" Text="{Binding Places[17], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--19. place-->
+        <TextBlock Grid.Row="11" Grid.Column="6" Text="19. Cena" />
+        <TextBox Grid.Row="11" Grid.Column="7" Text="{Binding Places[18], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <!--20. place-->
+        <TextBlock Grid.Row="12" Grid.Column="6" Text="20. Cena" />
+        <TextBox Grid.Row="12" Grid.Column="7" Text="{Binding Places[19], Mode=OneWay, StringFormat={}{0:C0}, ConverterCulture=sk-SK}" IsEnabled="False" />
+
+        <StackPanel Grid.Row="14" Grid.ColumnSpan="8" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Style="{StaticResource LightButtonStyle}" Margin="0,0,0,2" Click="okBtn_click" Content="Uložiť"></Button>
+            <Button Style="{StaticResource CloseButtonStyle}" Margin="10,0,0,2" Click="closeBtn_click" Content="Zavrieť" ></Button>
+        </StackPanel>
+    </Grid>
+</Window>

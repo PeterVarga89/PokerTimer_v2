@@ -1,0 +1,74 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.RegisterUserDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Registrácia hráča" 
+        Style="{StaticResource DarkWindowStyle}"
+        Width="700" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <TextBox Name="txtSearch" Grid.Row="0" VerticalContentAlignment="Center" Margin="2" KeyUp="txtSearch_KeyUp"></TextBox>
+            <ListBox KeyUp="lbxFoundUsers_KeyUp" Height="200" Name="lbxFoundUsers" Grid.Row="1" Margin="2" ScrollViewer.VerticalScrollBarVisibility="Visible"></ListBox>
+            <Button Style="{StaticResource LightButtonStyle}" Grid.Row="2" Width="120" Content="Pridať" Margin="2,2,0,2" HorizontalAlignment="Right" Click="btnAddPlayer_Click" />
+        
+            <wpfx:BusyIndicator Grid.RowSpan="3" BusyContent="Počkajte prosím" Name="busyIndicator"></wpfx:BusyIndicator>
+        
+        </Grid>
+
+       <ListBox Name="lbxPlayerList" Height="440" Grid.Column="1" Grid.RowSpan="2" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="2,2,2,32"></ListBox>
+
+        <Button Style="{StaticResource CloseButtonStyle}" Content="Zavrieť" Grid.Row="6" Grid.Column="1" Width="120" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="2,2,2,2" Click="btnClose_click" />
+
+
+        <!--REGISTRATION FROM-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid Background="#ABB4BF" Grid.ColumnSpan="2"></Grid>
+            <TextBlock Foreground="White" FontSize="14" Padding="2,0,0,0" VerticalAlignment="Center" Text="Registrácia" Grid.ColumnSpan="2" Margin="0,6" />
+
+            <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Text="Meno" />
+            <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Text="Priezvisko" />
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Text="Nick" />
+            <TextBlock Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Text="Telefon" />
+            <TextBlock Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Right" Padding="0" Text="E-mail" />
+            
+            <TextBox Name="txtRegFirstName" Grid.Row="1" Grid.Column="1" Margin="2,2,0,2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox Name="txtRegLastName" Grid.Row="2" Grid.Column="1" Margin="2,2,0,2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox Name="txtRegNickName" Grid.Row="3" Grid.Column="1" Margin="2,2,0,2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox Name="txtRegPhoneNumber" Grid.Row="4" Grid.Column="1" Margin="2,2,0,2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            <TextBox Name="txtRegEmial" Grid.Row="5" Grid.Column="1" Margin="2,2,0,2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+
+            <Button Style="{StaticResource LightButtonStyle}" Content="Registrovať" Grid.Row="6" Grid.Column="1" Width="120" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="2,2,0,2" Click="Button_Click" />
+
+        </Grid>
+
+    </Grid>
+</Window>

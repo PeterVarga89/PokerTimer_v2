@@ -1,0 +1,157 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.PlayerListDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PlayerListDlg"
+        Height="300"
+        Width="900">
+    <Window.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="5,0,5,5"></Setter>
+            <Setter Property="Padding" Value="0"></Setter>
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Margin" Value="5,0,5,5"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                </Trigger>
+
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Margin" Value="5,0,5,5"></Setter>
+                    <Setter Property="Padding" Value="0"></Setter>
+                    <Setter Property="Background" Value="Red" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="BorderBrush" Value="Gray" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Background="Black"></Grid>
+
+            <Grid Height="25" Background="Black" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Margin="5,0,25,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Foreground="Yellow" Grid.Column="1" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Hráč" />
+                <TextBlock Foreground="Yellow" Grid.Column="2" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Re buy" />
+                <TextBlock Foreground="Yellow" Grid.Column="3" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Add on" />
+
+                <TextBlock Foreground="Yellow" Grid.Column="4" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Poker" />
+                <TextBlock Foreground="Yellow" Grid.Column="5" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Straight Flush" />
+                <TextBlock Foreground="Yellow" Grid.Column="6" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Royal Flush" />
+            </Grid>
+
+            <ListBox
+                Name="lbPlayers"
+                HorizontalContentAlignment="Stretch"
+                Margin="0"
+                Padding="0"
+                Grid.Row="1"
+                Background="Black"
+                ScrollViewer.VerticalScrollBarVisibility="Visible"
+                BorderThickness="0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" Height="30">
+                            <Border Name="border" CornerRadius="3,0,0,3" Grid.Row="0" BorderThickness="0" Background="#2C2C2C" Opacity="1" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+
+                                <!--RANK-->
+                                <TextBlock Foreground="Yellow" Grid.Column="0" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Rank}" />
+
+                                <!--NAME-->
+                                <TextBlock Name="txtName" Grid.Column="1" Margin="4,0,0,0" VerticalAlignment="Center" Foreground="White" Text="{Binding FullDislpayName}" />
+
+                                <!--REBUY-->
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Visibility="Collapsed" Click="btnRebuyDown_Click" Name="btnRebuyDown" Style="{StaticResource PlayerLineDownButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                    <TextBlock Margin="0" Width="16" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding ReBuyCount}" />
+                                    <Button Visibility="Collapsed" Click="btnRebuyUp_Click" Name="btnRebuyUp" Style="{StaticResource PlayerLineUpButtonStyle}"  Tag="{Binding TournamentResultId}"></Button>
+                                </StackPanel>
+
+                                <!--ADD ON-->
+                                <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Visibility="Collapsed" Click="btnAddOnDown" Name="btnAddonDown" Style="{StaticResource PlayerLineDownButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                    <TextBlock Margin="0" Width="16" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding AddOnCount}" />
+                                    <Button Visibility="Collapsed" Click="btnAddOnUp" Name="btnAddonUp" Style="{StaticResource PlayerLineUpButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                </StackPanel>
+
+                                <!--POKER-->
+                                <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Visibility="Collapsed" Click="btnPokerDown" Name="btnPokerDown" Style="{StaticResource PlayerLineDownButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                    <TextBlock Margin="0" Width="16" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding PokerCount}" />
+                                    <Button Visibility="Collapsed" Click="btnPokerUp" Name="btnPokerUp" Style="{StaticResource PlayerLineUpButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                </StackPanel>
+
+                                <!--STRAIGHT FLUSH-->
+                                <StackPanel Grid.Column="5" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Visibility="Collapsed" Click="btnSFlushDown" Name="btnSFlushDown" Style="{StaticResource PlayerLineDownButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                    <TextBlock Margin="0" Width="16" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding StraightFlushCount}" />
+                                    <Button Visibility="Collapsed" Click="btnSFlushUp" Name="btnSFlushUp" Style="{StaticResource PlayerLineUpButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                </StackPanel>
+
+                                <!--ROYAL FLUSH-->
+                                <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Visibility="Collapsed" Click="btnRFlushDown" Name="btnRFlushDown" Style="{StaticResource PlayerLineDownButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                    <TextBlock Margin="0" Width="16" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding RoyalFlushCount}" />
+                                    <Button Visibility="Collapsed" Click="btnRFlushUp" Name="btnRFlushUp" Style="{StaticResource PlayerLineUpButtonStyle}" Tag="{Binding TournamentResultId}"></Button>
+                                </StackPanel>
+
+                                <!--DELETE-->
+                                <Button Grid.Column="7" Visibility="Collapsed" Name="btnDelete"  Style="{StaticResource PlayerLineDeleteButtonStyle}" Click="btnDelete_Click" Content="Delete" Tag="{Binding TournamentResultId}" />
+                            </Grid>
+                        </Grid>
+
+                        <DataTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#0C2430" />
+                                <Setter TargetName="btnDelete" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnRebuyUp" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnRebuyDown" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnAddonDown" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnAddonUp" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="txtName" Property="Foreground" Value="Yellow" />
+                                <Setter TargetName="btnPokerDown" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnPokerUp" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnSFlushDown" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnSFlushUp" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnRFlushDown" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="btnRFlushUp" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Window>
