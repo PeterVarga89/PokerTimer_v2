@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerTimer.Win", "PokerTimer.Win\PokerTimer.Win.csproj", "{832F0E24-1E80-44A0-9581-2561FEEF95C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerTimer.BusinessObjects", "PokerTimer.BusinessObjects\PokerTimer.BusinessObjects.csproj", "{C61FDD10-60DC-4964-9FB7-95CE7B03F03B}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PokerTimer.Database", "PokerTimer.Database\PokerTimer.Database.sqlproj", "{080E1F76-40FF-4A4A-B05F-B936AD3244D2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{832F0E24-1E80-44A0-9581-2561FEEF95C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{832F0E24-1E80-44A0-9581-2561FEEF95C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{832F0E24-1E80-44A0-9581-2561FEEF95C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61FDD10-60DC-4964-9FB7-95CE7B03F03B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61FDD10-60DC-4964-9FB7-95CE7B03F03B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61FDD10-60DC-4964-9FB7-95CE7B03F03B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61FDD10-60DC-4964-9FB7-95CE7B03F03B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

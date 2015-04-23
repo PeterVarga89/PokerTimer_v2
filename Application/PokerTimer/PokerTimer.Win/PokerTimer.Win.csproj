@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,12 +65,51 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit.Extended">
+      <HintPath>..\..\..\..\Club.Arcada\ClubArcada.CashTimer\ClubArcada.CashTimer\Application\Dlls\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\InfoCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\TimerCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\BuyInDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\PlayerListDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ReBuyDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\RegisterUserDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\SelectStructureDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\SelectTournamentDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\TournamentSettingsDlg.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,12 +118,52 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\InfoCtrl.xaml.cs">
+      <DependentUpon>InfoCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NumericTextbox.cs" />
+    <Compile Include="Controls\TimerCtrl.xaml.cs">
+      <DependentUpon>TimerCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UI.cs" />
+    <Compile Include="Controls\DLGWindow.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Dialogs\BuyInDlg.xaml.cs">
+      <DependentUpon>BuyInDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PlayerListDlg.xaml.cs">
+      <DependentUpon>PlayerListDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ReBuyDlg.xaml.cs">
+      <DependentUpon>ReBuyDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\RegisterUserDlg.xaml.cs">
+      <DependentUpon>RegisterUserDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectStructureDlg.xaml.cs">
+      <DependentUpon>SelectStructureDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelectTournamentDlg.xaml.cs">
+      <DependentUpon>SelectTournamentDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\TournamentSettingsDlg.xaml.cs">
+      <DependentUpon>TournamentSettingsDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\WindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Other\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -111,10 +191,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
     <Folder Include="Icons\" />
-    <Folder Include="Other\" />
-    <Folder Include="Styles\" />
     <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +222,26 @@
     <Resource Include="Images\backgrounds\bg_008.jpg" />
     <Resource Include="Images\backgrounds\bg_009.jpg" />
     <Resource Include="Images\backgrounds\bg_010.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PokerTimer.BusinessObjects\PokerTimer.BusinessObjects.csproj">
+      <Project>{c61fdd10-60dc-4964-9fb7-95ce7b03f03b}</Project>
+      <Name>PokerTimer.BusinessObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_down.png" />
+    <Resource Include="Images\btn_up.png" />
+    <Resource Include="Images\Error.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PokerStateDB.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PokerStateDB_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>PokerStateDB.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

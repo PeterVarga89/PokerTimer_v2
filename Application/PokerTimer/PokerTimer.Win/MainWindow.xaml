@@ -1,8 +1,208 @@
 ﻿<Window x:Class="PokerTimer.Win.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:UControls="clr-namespace:PokerTimer.Win.Controls"
+        WindowStyle="None"
+        WindowState="Maximized"
+        Name="myMainWindow"
+        Title="MainWindow" Height="1080" Width="1920">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ImageSource x:Key="bg_001" >Images/backgrounds/bg_001.jpg</ImageSource>
+            <ImageSource x:Key="bg_002" >Images/backgrounds/bg_002.jpg</ImageSource>
+            <ImageSource x:Key="bg_003" >Images/backgrounds/bg_003.jpg</ImageSource>
+            <ImageSource x:Key="bg_004" >Images/backgrounds/bg_004.jpg</ImageSource>
+            <ImageSource x:Key="bg_005" >Images/backgrounds/bg_005.jpg</ImageSource>
+            <ImageSource x:Key="bg_006" >Images/backgrounds/bg_006.jpg</ImageSource>
+            <ImageSource x:Key="bg_007" >Images/backgrounds/bg_007.jpg</ImageSource>
+            <ImageSource x:Key="bg_008" >Images/backgrounds/bg_008.jpg</ImageSource>
+            <ImageSource x:Key="bg_009" >Images/backgrounds/bg_009.jpg</ImageSource>
+            <ImageSource x:Key="bg_010" >Images/backgrounds/bg_010.jpg</ImageSource>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        
+        <Viewbox Stretch="UniformToFill">
+            <Image Name="imgBackground" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </Viewbox>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="140" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <!--TITLE-->
+            <Grid Grid.Column="1" Margin="20,20,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+
+                <Viewbox VerticalAlignment="Bottom">
+                    <Label  FontSize="200" VerticalAlignment="Bottom" Foreground="White" FontFamily="Arial" FontWeight="Bold" Content="{Binding Tournament.Name, Mode=OneWay}" />
+                </Viewbox>
+
+                <Viewbox Grid.Row="1">
+                    <Label Content="{Binding Tournament.Description, Mode=OneWay}" FontSize="200" FontWeight="Light" Foreground="White" FontFamily="Arial" />
+                </Viewbox>
+            </Grid>
+
+            <!--LEFT SIDE-->
+            <Grid Grid.Column="0" Grid.RowSpan="2" Margin="30,0,10,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Margin="0,0,0,30" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <UControls:InfoCtrl Text="ENTRIES" Message="{Binding Entries, ElementName=myMainWindow, Mode=TwoWay}" Grid.Row="0" />
+
+                    <UControls:InfoCtrl Text="{Binding RebuyControlTitle, ElementName=myMainWindow, Mode=TwoWay}" Message="{Binding ReBuyCount, ElementName=myMainWindow, Mode=TwoWay}" Grid.Row="1" Visibility="{Binding RebuyVisibility, ElementName=myMainWindow, Mode=OneWay}" />
+
+                    <UControls:InfoCtrl  Text="{Binding AddonControlTitle, ElementName=myMainWindow, Mode=TwoWay}" Message="{Binding AddOnCount, ElementName=myMainWindow, Mode=TwoWay}" Grid.Row="2" Visibility="{Binding AddonVisibility, ElementName=myMainWindow, Mode=OneWay}" />
+                    
+
+                    <UControls:InfoCtrl Text="AVG STACK" Message="{Binding AvgStack, ElementName=myMainWindow, Mode=TwoWay}" Grid.Row="5" />
+                </Grid>
+            </Grid>
+            
+            
+            
+            
+            
+            
+            
+            <!--CENTER-->
+            <Grid Grid.Column="1" Grid.Row="1" Margin="20,20,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Viewbox Grid.Row="0" Margin="0,0,0,0">
+                    <UControls:TimerCtrl x:Name="timerCtrl" />
+                </Viewbox>
+
+                <Grid Grid.Row="1" Margin="0,0,0,50">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <!--CURRENT BLIND INFO-->
+                    <Border Grid.Row="0" Margin="10,10,10,10" CornerRadius="6">
+                        <Border.Background>
+                            <LinearGradientBrush SpreadMethod="Reflect" EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#000000" Offset="0" />
+                                <GradientStop Color="#00000001" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="0" Margin="10,5,10,0" HorizontalAlignment="Left">
+                                <Label FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial">BLINDS</Label>
+                            </Viewbox>
+
+                            <Viewbox Grid.Row="0" Margin="10,5,10,0" HorizontalAlignment="Right">
+                                <Label Content="{Binding CurrentBlindInfo, Mode=OneWay}" FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial" />
+                            </Viewbox>
+
+                            <Viewbox Grid.Row="1" Margin="10,5,10,0" HorizontalAlignment="Left">
+                                <Label FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial">ANTE</Label>
+                            </Viewbox>
+                            <Viewbox Grid.Row="1" Margin="10,5,10,0" HorizontalAlignment="Right">
+                                <Label Content="{Binding CurrentAnteInfo, Mode=OneWay}" FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial" />
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+
+                    <!--NEXT BLIND INFO-->
+                    <Border Grid.Row="1" Margin="10,10,10,10" CornerRadius="6">
+                        <Border.Background>
+                            <LinearGradientBrush SpreadMethod="Reflect" EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#000000" Offset="0" />
+                                <GradientStop Color="#00000001" Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Row="0" Margin="10,10,10,10" HorizontalAlignment="Left">
+                                <Label FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial">NEXT LEVEL</Label>
+                            </Viewbox>
+
+                            <Viewbox Grid.Row="0" Margin="10,10,10,10" HorizontalAlignment="Right">
+                                <Label FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" Content="{Binding NextBlindInfo}" FontFamily="Arial"/>
+                            </Viewbox>
+
+                            <Viewbox Grid.Row="1" Margin="10,10,10,10" HorizontalAlignment="Left">
+                                <Label FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial">NEXT BREAK</Label>
+                            </Viewbox>
+                            <Viewbox Grid.Row="1" Margin="10,10,10,10" HorizontalAlignment="Right">
+                                <Label FontSize="600" Padding="0" Margin="0" FontWeight="Normal" Foreground="White" FontFamily="Arial">15 MIN</Label>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <!--RIGHT SIDE-->
+            <Grid Grid.Column="2" Grid.RowSpan="2" Margin="10,0,30,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Viewbox Grid.Row="0" Margin="0,20,0,0" HorizontalAlignment="Left">
+                    <Label Content="{Binding LevelInfo, Mode=OneWay}" FontSize="600" Padding="0" Margin="0" FontWeight="SemiBold" Foreground="White" FontFamily="Arial" />
+                </Viewbox>
+
+                <Grid Margin="0,0,0,30" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+
+                    <UControls:InfoCtrl Message="{Binding MoneyPoolDisplayName, ElementName=myMainWindow, Mode=TwoWay}" Text="MONEYPOOL" Grid.Row="0" />
+
+                    <UControls:InfoCtrl Message="{Binding Tournament.TournamentDetail.GTDDisplayName, ElementName=myMainWindow, Mode=TwoWay}" Text="GTD" Grid.Row="1" />
+
+                    <Grid Grid.Row="2" Grid.RowSpan="2" Background="BlanchedAlmond">
+                        <Viewbox>
+                            <Label Content="{Binding PlacesInfo, Mode=OneWay}" />
+                        </Viewbox>
+                    </Grid>
+                    
+                    <UControls:InfoCtrl Message="{Binding LeagueMoneyDisplayName, ElementName=myMainWindow, Mode=TwoWay}" Text="LEAGUE" Grid.Row="4" />
+
+                    <UControls:InfoCtrl Message="{Binding PrizePoolDisplayName, ElementName=myMainWindow, Mode=TwoWay}" Text="PRIZEPOOL" Grid.Row="5" />
+                </Grid>
+            </Grid>
+            
+            
+        </Grid>
+
+        <!--<Grid Background="Black" Opacity="0.7" />-->
     </Grid>
 </Window>
