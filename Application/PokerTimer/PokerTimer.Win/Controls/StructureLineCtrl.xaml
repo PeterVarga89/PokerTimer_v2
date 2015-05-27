@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="PokerTimer.Win.Controls.StructureLineCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Controls="clr-namespace:PokerTimer.Win.Controls"
+             mc:Ignorable="d"
+             Height="26"
+             HorizontalAlignment="Stretch"
+             Background="LightGray"
+             Padding="0"
+             Margin="0"
+             Name="ctrl"
+             d:DesignHeight="26"
+             d:DesignWidth="500">
+    <Grid HorizontalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Name="cbxType" Margin="2" SelectedValue="{Binding StructureDetail.Type, Mode=TwoWay}" DisplayMemberPath="DisplayName" SelectedValuePath="Value" >
+            <ComboBox.Resources>
+                <Style TargetType="{x:Type ComboBox}">
+                    <Setter Property="Background" Value="White" />
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </ComboBox.Resources>
+        </ComboBox>
+
+        <Label Grid.Column="1" Content="{Binding StructureDetail.LevelDisplayName}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+        <Controls:NumericTextbox Style="{StaticResource WhiteTextboxStyle}" Text="{Binding StructureDetail.SmallBlind, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Background="White" IsEnabled="True" Grid.Column="2" Margin="2" Visibility="{Binding StructureDetail.IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <TextBox Style="{StaticResource WhiteTextboxStyle}" Background="White" IsEnabled="False" Text="{Binding StructureDetail.BigBlind, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="3" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding StructureDetail.IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+        <TextBox Style="{StaticResource WhiteTextboxStyle}" Background="White" IsEnabled="True" Text="{Binding StructureDetail.Ante, Mode=OneWay}" Grid.Column="4" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding StructureDetail.IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+        <TextBox Style="{StaticResource WhiteTextboxStyle}" Background="White" IsEnabled="True" Text="{Binding StructureDetail.Time, Mode=OneWay}" Grid.Column="5" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+        <Button Style="{StaticResource RemoveButtonStyle}" Height="24" Grid.Column="6" Margin="2" />
+    </Grid>
+</UserControl>

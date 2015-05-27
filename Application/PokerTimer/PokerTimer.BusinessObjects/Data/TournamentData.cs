@@ -19,7 +19,7 @@ namespace PokerTimer.BusinessObjects.Data
         {
             using (var app = new BusinessDataContext(cs))
             {
-                return app.Tournaments.Where(t => t.GameType != 'C' && t.Date > DateTime.Now.AddDays(-1) && !t.DateDeleted.HasValue).OrderByDescending(t => t.Date).Take(take).ToList();
+                return app.Tournaments.Where(t => t.GameType != 'C' && t.Date > DateTime.Now.AddDays(-2) && !t.DateDeleted.HasValue).OrderByDescending(t => t.Date).Take(take).ToList();
             }
         }
 

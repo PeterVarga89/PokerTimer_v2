@@ -1,0 +1,15 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.PlayerDeleteDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource DarkWindowStyle}"
+        Title="Hráč" Height="100" Width="400">
+    <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="4,0,4,0" Height="30" Content="Vypadol" Style="{StaticResource LightButtonStyle}" Click="btnOut_Click" />
+            <Button Margin="4,0,4,0" Height="30" Content="Odstrániť" Style="{StaticResource CloseButtonStyle}" Click="btnDelete_Click" />
+            <Button Margin="4,0,4,0" Height="30" Content="Zavrieť" Style="{StaticResource CloseButtonStyle}" Click="btnClose_Click" />
+
+        </StackPanel>
+    </Grid>
+</Window>

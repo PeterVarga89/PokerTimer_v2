@@ -78,13 +78,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\StructureLineCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TimerCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\AlertDlg.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\BuyInDlg.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\PlayerDeleteDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\PlayerListDlg.xaml">
       <SubType>Designer</SubType>
@@ -106,6 +118,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dialogs\StringInputDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\StructureEditDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\StructuresDlg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\TournamentSettingsDlg.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,14 +146,23 @@
       <DependentUpon>InfoCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NumericTextbox.cs" />
+    <Compile Include="Controls\StructureLineCtrl.xaml.cs">
+      <DependentUpon>StructureLineCtrl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\TimerCtrl.xaml.cs">
       <DependentUpon>TimerCtrl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\UI.cs" />
     <Compile Include="Controls\DLGWindow.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Dialogs\AlertDlg.xaml.cs">
+      <DependentUpon>AlertDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\BuyInDlg.xaml.cs">
       <DependentUpon>BuyInDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PlayerDeleteDlg.xaml.cs">
+      <DependentUpon>PlayerDeleteDlg.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\PlayerListDlg.xaml.cs">
       <DependentUpon>PlayerListDlg.xaml</DependentUpon>
@@ -146,6 +179,15 @@
     <Compile Include="Dialogs\SelectTournamentDlg.xaml.cs">
       <DependentUpon>SelectTournamentDlg.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\StringInputDlg.xaml.cs">
+      <DependentUpon>StringInputDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StructureEditDlg.xaml.cs">
+      <DependentUpon>StructureEditDlg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StructuresDlg.xaml.cs">
+      <DependentUpon>StructuresDlg.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\TournamentSettingsDlg.xaml.cs">
       <DependentUpon>TournamentSettingsDlg.xaml</DependentUpon>
     </Compile>
@@ -157,7 +199,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Styles\WindowStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Templates\ListBoxItemTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Icons\" />
-    <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -235,6 +284,7 @@
     <Resource Include="Images\Error.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\btn_remove.png" />
     <Content Include="PokerStateDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

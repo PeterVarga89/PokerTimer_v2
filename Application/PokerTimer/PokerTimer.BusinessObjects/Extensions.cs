@@ -1,18 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerTimer.BusinessObjects
 {
     public static class Extensions
     {
+        public static void Raise<T>(this PropertyChangedEventHandler handler, Expression<Func<T>> propertyExpression)
+        {
+            if (handler != null)
+            {
+                var body = propertyExpression.Body as MemberExpression;
+                if (body == null)
+                    throw new ArgumentException("'propertyExpression' should be a member expression");
+
+                var expression = body.Expression as ConstantExpression;
+                if (expression == null)
+                    throw new ArgumentException("'propertyExpression' body should be a constant expression");
+
+                object target = Expression.Lambda(expression).Compile().DynamicInvoke();
+
+                var e = new PropertyChangedEventArgs(body.Member.Name);
+                handler(target, e);
+            }
+        }
+
         public static void Raise(this PropertyChangedEventHandler helper, object thing, string name)
         {
             if (helper != null)
@@ -183,20 +201,28 @@ namespace PokerTimer.BusinessObjects
             {
                 case 'X':
                     return eGameType.NotSet;
+
                 case 'F':
                     return eGameType.FreezeOut;
+
                 case 'R':
                     return eGameType.RebuyUnlimited;
+
                 case 'D':
                     return eGameType.DoubleChance;
+
                 case 'T':
                     return eGameType.TripleChance;
+
                 case 'C':
                     return eGameType.CashGame;
+
                 case 'E':
                     return eGameType.FreeRoll;
+
                 case 'L':
                     return eGameType.RebuyLimited;
+
                 case 'A':
                     return eGameType.DoubleTrouble;
 
@@ -211,7 +237,6 @@ namespace PokerTimer.BusinessObjects
 
             foreach (PropertyInfo i in newObj.GetType().GetProperties())
             {
-
                 //"EntitySet" is specific to link and this conditional logic is optional/can be ignored
                 if (i.CanWrite && i.PropertyType.Name.Contains("EntitySet") == false)
                 {
@@ -233,7 +258,67 @@ namespace PokerTimer.BusinessObjects
             return Math.Round(val - (val % 5), 0);
         }
 
-        
-        
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> list) where T : class
+        {
+            var oc = new ObservableCollection<T>();
+            foreach (var item in list)
+                oc.Add(item);
+
+            return oc;
+        }
+
+        public static eTransactionType GetOposite(this eTransactionType value)
+        {
+            if (value == eTransactionType.Bar)
+            {
+                return eTransactionType.BarReturned;
+            }
+            else if (value == eTransactionType.CashGame)
+            {
+                return eTransactionType.CashGameReturned;
+            }
+            else if (value == eTransactionType.NotSet)
+            {
+                return eTransactionType.Returned;
+            }
+            else if (value == eTransactionType.Tournament)
+            {
+                return eTransactionType.TournamentReturned;
+            }
+            else if (value == eTransactionType.Bonus)
+            {
+                return eTransactionType.BonusReturned;
+            }
+            else
+            {
+                throw new NotImplementedException("Must be (-)");
+            }
+        }
+
+        public static double ToAbs(this double val)
+        {
+            return Math.Abs(val);
+        }
+
+        public static double ToAbs(this double? val)
+        {
+            if (!val.HasValue)
+                return 0;
+
+            return Math.Abs(val.Value);
+        }
+
+        public static double ToAbs(this int val)
+        {
+            return Math.Abs(val);
+        }
+
+        public static double ToAbs(this int? val)
+        {
+            if (!val.HasValue)
+                return 0;
+
+            return Math.Abs(val.Value);
+        }
     }
 }

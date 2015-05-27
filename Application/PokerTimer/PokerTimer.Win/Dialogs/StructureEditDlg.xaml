@@ -1,0 +1,115 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.StructureEditDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:wpfx="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
+        xmlns:Controls="clr-namespace:PokerTimer.Win.Controls"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StructureEditDlg"
+        Style="{StaticResource DarkWindowStyle}"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="Manual"
+        Height="400"
+        MaxHeight="400"
+        Width="750">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="150" />
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="DarkGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="48" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Text="Typ" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="12" FontWeight="Bold" />
+                <TextBlock Grid.Column="2" Text="Lvl" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="12" FontWeight="Bold" />
+                <TextBlock Grid.Column="3" Text="Small Blind" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="12" FontWeight="Bold" />
+                <TextBlock Grid.Column="4" Text="Big Blind" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="12" FontWeight="Bold" />
+                <TextBlock Grid.Column="5" Text="Ante" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="12" FontWeight="Bold" />
+                <TextBlock Grid.Column="6" Text="Čas" VerticalAlignment="Center" Margin="5,0,0,0" FontSize="12" FontWeight="Bold" />
+            </Grid>
+
+            <ListView
+                Name="lbxItems"
+                AllowDrop="True"
+                ItemsSource="{Binding Details, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Grid.Row="1"
+                Background="LightGray"
+                Grid.RowSpan="2" 
+                >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="AllowDrop" Value="True" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="HorizontalAlignment" Value="Stretch" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="48" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Margin="1" Width="22" ToolTip="Posunúť hore" Style="{StaticResource PlayerLineUpButtonStyle}" Click="btnUp_Click" Tag="{Binding StructureDetailId,Mode=OneWay}" />
+                                <Button Margin="1" Width="22" ToolTip="Posunúť dole" Style="{StaticResource PlayerLineDownButtonStyle}" Click="btnDown_Click" Tag="{Binding StructureDetailId,Mode=OneWay}" />
+                            </StackPanel>
+
+                            <ComboBox ItemsSource="{Binding LevelTypes,Mode=OneWay}" Grid.Column="1" Margin="2" SelectedValue="{Binding Type, Mode=TwoWay}" DisplayMemberPath="DisplayName" SelectedValuePath="Value">
+                            </ComboBox>
+
+                            <Label Grid.Column="2" Content="{Binding LevelDisplayName}" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <Controls:NumericTextbox Style="{StaticResource WhiteTextboxStyle}" Text="{Binding SmallBlind, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Background="White" IsEnabled="True" Grid.Column="3" Margin="2" Visibility="{Binding IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBox Style="{StaticResource WhiteTextboxStyle}" Background="White" IsEnabled="False" Text="{Binding BigBlind, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+                            <TextBox Style="{StaticResource WhiteTextboxStyle}" Background="White" IsEnabled="True" Text="{Binding Ante, Mode=TwoWay}" Grid.Column="5" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding IsLevel, Converter={StaticResource BoolToVisibilityConverter}}" />
+                            <TextBox Style="{StaticResource WhiteTextboxStyle}" Background="White" IsEnabled="True" Text="{Binding Time, Mode=TwoWay}" Grid.Column="6" Margin="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+                            <Button Style="{StaticResource RemoveButtonStyle}" Click="structDelete_Click" Tag="{Binding StructureDetailId,Mode=OneWay}" Height="24" Grid.Column="7" Margin="2" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <StackPanel Grid.Column="1">
+            <Button Content="Nový riadok" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnNewRow_Click" />
+            <Button Content="Vymazať riadok" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnDeleteRow_Click" />
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+            <Button Content="Uložiť" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnSave_Click" />
+            <Button Content="Uložiť a zavrieť" Tag="close" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnSave_Click" />
+            <Button Content="Uložiť ako" Tag="close" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnSaveAs_Click" />
+            <Button Content="Zavrieť" Style="{StaticResource CloseButtonStyle}" Margin="5,5,5,5" Click="btnClose_Click" />
+        </StackPanel>
+        
+        <wpfx:BusyIndicator IsBusy="{Binding IsBusy, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
+    </Grid>
+</Window>

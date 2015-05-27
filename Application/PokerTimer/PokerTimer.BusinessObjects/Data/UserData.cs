@@ -15,6 +15,14 @@ namespace PokerTimer.BusinessObjects.Data
             }
         }
 
+        public static User GetById(eConnectionString cs, Guid id)
+        {
+            using (var app = new BusinessDataContext(cs))
+            {
+                return app.Users.SingleOrDefault(u => u.UserId == id);
+            }
+        }
+
         public static List<User> GetListBySearchString(eConnectionString cs, string searchString)
         {
             using (var app = new BusinessDataContext(cs))
@@ -79,6 +87,34 @@ namespace PokerTimer.BusinessObjects.Data
                 var user = app.Users.SingleOrDefault(u => u.UserId == id);
 
                 return user.IsNotNull();
+            }
+        }
+
+        public static void SetUserRefactoringType(Guid userId, eAutoReturnState returnState)
+        {
+            using (var app = new BusinessDataContext(eConnectionString.Online))
+            {
+                var user = app.Users.SingleOrDefault(u => u.UserId == userId);
+                user.AutoReturnState = returnState;
+                app.SubmitChanges();
+            }
+        }
+
+        public static double GetUserBalance(Guid userId)
+        {
+            using (var app = new BusinessDataContext(eConnectionString.Online))
+            {
+                var re = app.GetUserBalance(userId);
+                if (re.IsNull())
+                    return 0;
+
+                var res = app.GetUserBalance(userId).SingleOrDefault();
+
+                if (res.IsNull())
+                    return 0;
+
+                var result = app.GetUserBalance(userId).SingleOrDefault().Column1;
+                return result.HasValue ? result.Value : 0;
             }
         }
     }

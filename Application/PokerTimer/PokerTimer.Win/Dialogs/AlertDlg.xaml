@@ -1,0 +1,17 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.AlertDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource DarkWindowStyle}"
+        WindowStartupLocation="CenterScreen"
+        Title="Pozor!" Height="150" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Name="txtText" TextWrapping="Wrap" FontSize="16" TextAlignment="Center" Margin="10" />
+
+        <Button Content="OK" Grid.Row="1" Width="160" Height="30" Style="{StaticResource LightButtonStyle}" Click="Button_Click"></Button>
+    </Grid>
+</Window>

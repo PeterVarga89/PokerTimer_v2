@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PokerTimer.BusinessObjects.DataClasses
 {
@@ -22,7 +20,7 @@ namespace PokerTimer.BusinessObjects.DataClasses
             GTD,
             GTDDisplayName
         }
-        
+
         public void Refresh()
         {
             PropertyChange(Property.GTD);
@@ -30,6 +28,8 @@ namespace PokerTimer.BusinessObjects.DataClasses
         }
 
         # endregion
+
+        
 
         public string GTDDisplayName { get { return this.GTD + "€"; } private set { } }
     }

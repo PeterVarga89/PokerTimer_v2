@@ -1,14 +1,13 @@
-﻿using PokerTimer.BusinessObjects;
-using PokerTimer.BusinessObjects.DataClasses;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using PokerTimer.BusinessObjects;
+using PokerTimer.BusinessObjects.DataClasses;
 
 namespace PokerTimer.Win.Dialogs
 {
@@ -37,10 +36,9 @@ namespace PokerTimer.Win.Dialogs
                 lbxFoundUsers.SelectedIndex = 0;
                 lbxFoundUsers.Focus();
                 ListBoxItem item = lbxFoundUsers.ItemContainerGenerator.ContainerFromIndex(0) as ListBoxItem;
-                
-                if(item != null)
-                    item.Focus();
 
+                if (item != null)
+                    item.Focus();
             }
             else
             {
@@ -68,7 +66,6 @@ namespace PokerTimer.Win.Dialogs
                     busyIndicator.IsBusy = true;
                     worker.RunWorkerAsync();
                 }
-
                 else
                 {
                     lbxFoundUsers.ItemsSource = null;
@@ -81,7 +78,16 @@ namespace PokerTimer.Win.Dialogs
             var user = lbxFoundUsers.SelectedItem as User;
 
             if (user.IsNotNull())
+            {
+                if (user.IsBlocked)
+                {
+                    App.Alert(string.Format("Hráč {0} je blokovaný. Nemože sa registrovať do hry!", user.FullName));
+                    txtSearch.Focus();
+                    return;
+                }
+
                 AddPlayer(user);
+            }
 
             App.ParentWindow.Refresh();
         }

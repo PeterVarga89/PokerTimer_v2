@@ -130,6 +130,7 @@
                                 <!--DELETE-->
                                 <Button Grid.Column="7" Visibility="Collapsed" Name="btnDelete"  Style="{StaticResource PlayerLineDeleteButtonStyle}" Click="btnDelete_Click" Content="Delete" Tag="{Binding TournamentResultId}" />
                             </Grid>
+                            <Grid Visibility="{Binding IsOut, Converter={StaticResource BoolToVisibilityConverter}}" Background="Black" Opacity="0.7"/>
                         </Grid>
 
                         <DataTemplate.Triggers>

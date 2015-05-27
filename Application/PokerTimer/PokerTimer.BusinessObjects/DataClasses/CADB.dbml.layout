@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18, 18.5" name="CADB">
   <DataContextMoniker Name="/CADBDataContext" />
   <nestedChildShapes>
-    <classShape Id="5ebd11bd-9133-484a-a538-ff2009390276" absoluteBounds="6.75, 0.75, 2, 1.7708968098958329">
+    <classShape Id="5ebd11bd-9133-484a-a538-ff2009390276" isExpanded="false" absoluteBounds="0.5, 1.875, 2, 0.45">
       <DataClassMoniker Name="/CADBDataContext/Wage" />
       <nestedChildShapes>
-        <elementListCompartment Id="9312735a-5f68-41ff-a08c-dd4d9de46199" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9312735a-5f68-41ff-a08c-dd4d9de46199" absoluteBounds="0.51499999999999968, 2.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8bd306cb-8a03-41cc-9417-c4f0d6a6f0ee" absoluteBounds="6.75, 3.75, 2, 2.5401025390625005">
+    <classShape Id="8bd306cb-8a03-41cc-9417-c4f0d6a6f0ee" isExpanded="false" absoluteBounds="0.5, 2.5, 2, 0.45">
       <DataClassMoniker Name="/CADBDataContext/Banner" />
       <nestedChildShapes>
-        <elementListCompartment Id="34d2a0f8-aaee-482a-8bf3-90f103a6ae08" absoluteBounds="6.765, 4.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="34d2a0f8-aaee-482a-8bf3-90f103a6ae08" absoluteBounds="0.51499999999999968, 2.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="08d0f5ea-971d-4762-bf2c-3ad7385f82f3" absoluteBounds="6.75, 7.75, 2, 1.9631982421874996">
@@ -116,28 +116,22 @@
         <elementListCompartment Id="081a7cf1-2c89-427b-8ed6-ba93c850f926" absoluteBounds="15.765, 6.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="cd4b1ab1-ba4d-4d16-98fa-2c2b3d8065e4" absoluteBounds="3.5, 1.125, 2, 2.5401025390625005">
-      <DataClassMoniker Name="/CADBDataContext/Transaction" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6b6100f6-f6c9-4d54-90df-4ef188cc9481" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="cacbd36c-c41f-4b86-9949-33e4324eac6c" absoluteBounds="3.5, 4.375, 2, 3.1170068359375005">
-      <DataClassMoniker Name="/CADBDataContext/UserRole" />
-      <nestedChildShapes>
-        <elementListCompartment Id="143e5d12-bc56-4eff-a4d5-0bb4f5115683" absoluteBounds="3.515, 4.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="8daf5cec-0658-421c-a9b8-ae9bfe8afb63" absoluteBounds="0.75, 2.25, 2, 4.2708154296875005">
-      <DataClassMoniker Name="/CADBDataContext/User" />
-      <nestedChildShapes>
-        <elementListCompartment Id="1ce898c7-ccff-4e8d-8eef-14fbb35963ac" absoluteBounds="0.765, 2.71, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="28f85d59-bdef-4077-9424-36dc49f4870b" absoluteBounds="15.75, 11.75, 2, 1.7708968098958344">
       <DataClassMoniker Name="/CADBDataContext/UserSetting" />
       <nestedChildShapes>
         <elementListCompartment Id="6066e2f0-3b4f-41a7-bf13-8e0b1f7c9eb9" absoluteBounds="15.765, 12.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="06758ebb-ef03-4a4b-88fa-cdc3832186ef" isExpanded="false" absoluteBounds="0.5, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/CADBDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8dc32188-2153-40c7-80d9-773c8d911e3c" absoluteBounds="0.515, 0.96, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="063b16b0-e497-4381-9e9b-7c1536283ab0" isExpanded="false" absoluteBounds="0.5, 1.125, 2, 0.45">
+      <DataClassMoniker Name="/CADBDataContext/Transaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b954d077-8668-45bf-880b-d5a853a34b74" absoluteBounds="0.51500000000000012, 1.585, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

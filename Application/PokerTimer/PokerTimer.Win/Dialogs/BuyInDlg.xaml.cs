@@ -190,8 +190,6 @@ namespace PokerTimer.Win.Dialogs
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
-
             TournamentResult.ReBuyCount = IsRebuy || IsDoubleChance ? 1 : 0;
             TournamentResult.AddOnCount = IsTripleChance ? 1 : 0;
             TournamentResult.IsTimeBonus = IsTimeBonus;
@@ -200,6 +198,7 @@ namespace PokerTimer.Win.Dialogs
 
             App.ParentWindow.PlayerList.Add(TournamentResult);
 
+            DialogResult = true;
             this.Close();
         }
 

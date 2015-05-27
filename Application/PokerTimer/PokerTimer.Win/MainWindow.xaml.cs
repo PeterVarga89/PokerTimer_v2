@@ -62,67 +62,33 @@ namespace PokerTimer.Win
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void PropertyChange(Property property)
-        {
-            PropertyChanged.Raise(this, property.ToString());
-        }
-
-        private enum Property
-        {
-            NotSet = 0,
-            IsShadeVisible,
-            Tournament,
-            CurrentBlindInfo,
-            CurrentAnteInfo,
-            NextBlindInfo,
-            LevelInfo,
-
-            Entries,
-            ReBuyCount,
-            AddOnCount,
-
-            AvgStack,
-
-            RebuyControlTitle,
-            AddonControlTitle,
-
-            PrizePoolDisplayName,
-            LeagueMoneyDisplayName,
-            MoneyPoolDisplayName,
-
-            RebuyVisibility,
-            AddonVisibility,
-
-            PlacesInfo
-        }
-
         public void Refresh()
         {
-            PropertyChange(Property.IsShadeVisible);
-            PropertyChange(Property.Tournament);
+            PropertyChanged.Raise(() => IsShadeVisible);
+            PropertyChanged.Raise(() => Tournament);
 
-            PropertyChange(Property.PlacesInfo);
+            PropertyChanged.Raise(() => PlacesInfo);
 
-            PropertyChange(Property.CurrentBlindInfo);
-            PropertyChange(Property.CurrentAnteInfo);
-            PropertyChange(Property.NextBlindInfo);
-            PropertyChange(Property.LevelInfo);
+            PropertyChanged.Raise(() => CurrentBlindInfo);
+            PropertyChanged.Raise(() => CurrentAnteInfo);
+            PropertyChanged.Raise(() => NextBlindInfo);
+            PropertyChanged.Raise(() => LevelInfo);
 
-            PropertyChange(Property.Entries);
-            PropertyChange(Property.ReBuyCount);
-            PropertyChange(Property.AddOnCount);
+            PropertyChanged.Raise(() => Entries);
+            PropertyChanged.Raise(() => ReBuyCount);
+            PropertyChanged.Raise(() => AddOnCount);
 
-            PropertyChange(Property.AvgStack);
+            PropertyChanged.Raise(() => AvgStack);
 
-            PropertyChange(Property.RebuyControlTitle);
-            PropertyChange(Property.AddonControlTitle);
+            PropertyChanged.Raise(() => RebuyControlTitle);
+            PropertyChanged.Raise(() => AddonControlTitle);
 
-            PropertyChange(Property.PrizePoolDisplayName);
-            PropertyChange(Property.LeagueMoneyDisplayName);
-            PropertyChange(Property.MoneyPoolDisplayName);
+            PropertyChanged.Raise(() => PrizePoolDisplayName);
+            PropertyChanged.Raise(() => LeagueMoneyDisplayName);
+            PropertyChanged.Raise(() => MoneyPoolDisplayName);
 
-            PropertyChange(Property.RebuyVisibility);
-            PropertyChange(Property.AddonVisibility);
+            PropertyChanged.Raise(() => RebuyVisibility);
+            PropertyChanged.Raise(() => AddonVisibility);
         }
 
         # endregion
@@ -135,7 +101,7 @@ namespace PokerTimer.Win
             DataContext = this;
             InitializeComponent();
 
-            Settings = new TournamentSettingsDlg();
+            
 
             IsShadeVisible = false;
             SetRandomBackground();
@@ -159,6 +125,8 @@ namespace PokerTimer.Win
 
             var dlg = new Dialogs.SelectTournamentDlg();
             dlg.ShowDialog();
+
+            Settings = new TournamentSettingsDlg();
         }
 
         private void MainWindow_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
@@ -188,6 +156,13 @@ namespace PokerTimer.Win
                 var buyInDlg = new Dialogs.PlayerListDlg();
                 buyInDlg.ShowDialog();
             }
+
+            if (e.Key == System.Windows.Input.Key.F5)
+            {
+                var dlg = new Dialogs.StructuresDlg();
+                dlg.ShowDialog();
+            }
+
         }
 
         private void SetRandomBackground()
@@ -243,7 +218,7 @@ namespace PokerTimer.Win
             if (Structure.IsNull())
                 return new StructureDetail();
 
-            return Structure.Details[Structure.Details.Count >= CurrentLevel + 1 ? CurrentLevel + 1 : Structure.Details.Count];
+            return Structure.Details[(Structure.Details.Count >= CurrentLevel + 1 ? CurrentLevel + 1 : Structure.Details.Count) - 1];
         }
 
         # endregion

@@ -1,6 +1,8 @@
-﻿namespace PokerTimer.BusinessObjects.DataClasses
+﻿using System.ComponentModel;
+
+namespace PokerTimer.BusinessObjects.DataClasses
 {
-    public partial class TournamentResult
+    public partial class TournamentResult : INotifyPropertyChanged
     {
         public User User { get; set; }
 
@@ -13,5 +15,19 @@
         }
 
         public int BonusStackTotal { get; set; }
+
+        public bool IsOut
+        {
+            get
+            {
+                return this.DateDeleted.HasValue;
+            }
+            set { }
+        }
+
+        public void RefreshVisibility()
+        {
+            PropertyChanged.Raise(() => IsOut);
+        }
     }
 }

@@ -1,0 +1,39 @@
+﻿<Window x:Class="PokerTimer.Win.Dialogs.StructuresDlg"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{StaticResource DarkWindowStyle}"
+        Title="Struktúry"
+        Height="250"
+        Width="500"
+        >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox Name="lbxStructures"
+                 MinHeight="200" 
+                 DisplayMemberPath="Name"
+                 ScrollViewer.VerticalScrollBarVisibility="Visible"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 >
+            
+        </ListBox>
+        
+        <StackPanel Grid.Column="1">
+            <Button Content="Nová" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnNew_Click" />
+            <Button Content="Upraviť" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="Button_Click" />
+            <Button Content="Použiť" Style="{StaticResource LightButtonStyle}" Margin="5,5,5,0" Click="btnUse_Click" />
+            <Button Content="Vymazať" Style="{StaticResource CloseButtonStyle}" Margin="5,5,5,0" Click="btnDelete_Click" />
+            
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+            <Button Content="Zavrieť" Style="{StaticResource CloseButtonStyle}" Margin="5,5,5,5" Click="btnClose_Click" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -78,7 +78,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid Width="30" Height="30">
-                        <Image Name="image" Margin="4" Opacity="0.5" Width="22" Height="22" Source="../Images/btn_up.png"></Image>
+                        <Image HorizontalAlignment="Center" Name="image" Margin="4" Opacity="0.5" Width="22" Height="22" Source="../Images/btn_up.png"></Image>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
@@ -107,4 +107,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Button" x:Key="RemoveButtonStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Width="30" Height="auto">
+                        <Image Name="image" Margin="4" Opacity="0.5" Width="22" Height="22" VerticalAlignment="Center" HorizontalAlignment="Center" Source="../Images/btn_remove.png"></Image>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="image" Property="Opacity" Value="1.0" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

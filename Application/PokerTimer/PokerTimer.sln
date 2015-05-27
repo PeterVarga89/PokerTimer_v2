@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerTimer.BusinessObjects"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PokerTimer.Database", "PokerTimer.Database\PokerTimer.Database.sqlproj", "{080E1F76-40FF-4A4A-B05F-B936AD3244D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokerTimer.Mailer", "PokerTimer.Mailer\PokerTimer.Mailer.csproj", "{666D0D10-B761-4F47-825B-0C12A9AB71DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{080E1F76-40FF-4A4A-B05F-B936AD3244D2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{666D0D10-B761-4F47-825B-0C12A9AB71DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{666D0D10-B761-4F47-825B-0C12A9AB71DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{666D0D10-B761-4F47-825B-0C12A9AB71DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{666D0D10-B761-4F47-825B-0C12A9AB71DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

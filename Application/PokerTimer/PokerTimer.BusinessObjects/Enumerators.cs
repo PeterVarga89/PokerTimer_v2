@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace PokerTimer.BusinessObjects
 {
@@ -40,6 +35,7 @@ namespace PokerTimer.BusinessObjects
     public enum eConnectionString
     {
         NotSet = 0,
+
         [Description(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|PSDB.mdf;Integrated Security=True")]
         Local = 1,
 
@@ -105,7 +101,6 @@ namespace PokerTimer.BusinessObjects
 
         [Description("30,00_17,40_10,50_8,50_6,50_5,00_4,00_3,00_2,20_1,50_1,50_1,30_1,30_1,30_1,00_1,00_1,00_1,00_1,00_1,00")]
         p20,
-
     }
 
     public enum ePositionSeqs
@@ -129,5 +124,60 @@ namespace PokerTimer.BusinessObjects
         p18 = 180,
         p19 = 190,
         p20 = 200
+    }
+
+    public enum eStructureLineType
+    {
+        [Description("Vyberte si!")]
+        NotSet = 0,
+
+        [Description("Level")]
+        Level = 76,
+
+        [Description("Coffe Break")]
+        CoffeBreak = 67,
+
+        [Description("Dinner Break")]
+        DinnerBreak = 68
+    }
+
+    public enum eAutoReturnState
+    {
+        NotSet = 0,
+        Neto = 1,
+        Full = 2
+    }
+
+    public enum eTransactionType
+    {
+        [Description("Pôžička (-)")]
+        NotSet = 0,
+
+        [Description("Pôžička (+)")]
+        Returned = 1,
+
+        [Description("Bar (-)")]
+        Bar = 2,
+
+        [Description("Bar (+)")]
+        BarReturned = 3,
+
+        [Description("Turnaj (-)")]
+        Tournament = 4,
+
+        [Description("Turnaj (+)")]
+        TournamentReturned = 5,
+
+        [Description("Cash Game (-)")]
+        CashGame = 6,
+
+        [Description("Cash Game (+)")]
+        CashGameReturned = 7,
+
+        [Description("Bonus (-)")]
+        Bonus = 8,
+
+        [Description("Bonus (-)")]
+        BonusReturned = 9
     }
 }

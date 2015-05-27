@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +18,11 @@ namespace PokerTimer.Win.Dialogs
             lbPlayers.ItemsSource = App.ParentWindow.PlayerList;
         }
 
+        public void Recalculate()
+        {
+
+        }
+
         private void PlayerListDialog_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.F3)
@@ -27,6 +33,23 @@ namespace PokerTimer.Win.Dialogs
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var id = (sender as Button).Tag.ToString().ToGuid();
+
+            var dlg = new PlayerDeleteDlg();
+            dlg.ShowDialog();
+
+            if(dlg.IsDelete)
+            {
+                var result = App.ParentWindow.PlayerList.SingleOrDefault(p => p.TournamentResultId == id);
+                App.ParentWindow.PlayerList.Remove(result);
+            }
+
+            if(dlg.IsOut)
+            {
+                var result = App.ParentWindow.PlayerList.SingleOrDefault(p => p.TournamentResultId == id);
+                result.DateDeleted = DateTime.Now;
+                result.RefreshVisibility();
+            }
 
             App.ParentWindow.Refresh();
         }

@@ -188,7 +188,7 @@
 
                     <UControls:InfoCtrl Message="{Binding Tournament.TournamentDetail.GTDDisplayName, ElementName=myMainWindow, Mode=TwoWay}" Text="GTD" Grid.Row="1" />
 
-                    <Grid Grid.Row="2" Grid.RowSpan="2" Background="BlanchedAlmond">
+                    <Grid Grid.Row="2" Grid.RowSpan="2" Background="Transparent">
                         <Viewbox>
                             <Label Content="{Binding PlacesInfo, Mode=OneWay}" />
                         </Viewbox>

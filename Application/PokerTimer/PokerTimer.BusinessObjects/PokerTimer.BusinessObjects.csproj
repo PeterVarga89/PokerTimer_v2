@@ -52,13 +52,17 @@
     </Compile>
     <Compile Include="DataClasses\PartialClasses\BusinessDataContext.cs" />
     <Compile Include="DataClasses\PartialClasses\Structure.cs" />
+    <Compile Include="DataClasses\PartialClasses\StructureDetail.cs" />
     <Compile Include="DataClasses\PartialClasses\Tournament.cs" />
     <Compile Include="DataClasses\PartialClasses\TournamentDetail.cs" />
     <Compile Include="DataClasses\PartialClasses\TournamentResult.cs" />
+    <Compile Include="DataClasses\PartialClasses\Transaction.cs" />
     <Compile Include="DataClasses\PartialClasses\User.cs" />
+    <Compile Include="DataClasses\SelectableEnum.cs" />
     <Compile Include="Data\StructureData.cs" />
     <Compile Include="Data\TournamentData.cs" />
     <Compile Include="Data\TournamentResultData.cs" />
+    <Compile Include="Data\TransactionData.cs" />
     <Compile Include="Data\UserData.cs" />
     <Compile Include="Enumerators.cs" />
     <Compile Include="Extensions.cs" />
@@ -89,7 +93,12 @@
       <DependentUpon>CADB.dbml</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PokerTimer.Mailer\PokerTimer.Mailer.csproj">
+      <Project>{666d0d10-b761-4f47-825b-0c12a9ab71dd}</Project>
+      <Name>PokerTimer.Mailer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

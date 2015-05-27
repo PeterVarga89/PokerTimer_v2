@@ -18,5 +18,33 @@
             }
             set { }
         }
+
+        public eAutoReturnState AutoReturnState
+        {
+            get
+            {
+                if (!this.IsAutoReturn.HasValue)
+                    return eAutoReturnState.NotSet;
+                else if (this.IsAutoReturn.HasValue && !this.IsAutoReturn.Value)
+                    return eAutoReturnState.Neto;
+                else
+                    return eAutoReturnState.Full;
+            }
+            set
+            {
+                if (value == eAutoReturnState.NotSet)
+                {
+                    IsAutoReturn = null;
+                }
+                else if (value == eAutoReturnState.Neto)
+                {
+                    IsAutoReturn = false;
+                }
+                else
+                {
+                    IsAutoReturn = true;
+                }
+            }
+        }
     }
 }

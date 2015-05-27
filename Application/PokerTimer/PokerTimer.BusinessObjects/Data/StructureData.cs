@@ -11,7 +11,7 @@ namespace PokerTimer.BusinessObjects.Data
         {
             using (var app = new BusinessDataContext(cs))
             {
-                return app.Structures.ToList();
+                return app.Structures.Where(s => !s.DateDeleted.HasValue).ToList();
             }
         }
 
@@ -23,35 +23,66 @@ namespace PokerTimer.BusinessObjects.Data
             }
         }
 
-        public static void Insert(eConnectionString cs, Structure entity, List<StructureDetail> details)
+        public static void InsertOrUpdate(eConnectionString cs, Structure entity, List<StructureDetail> details, bool asNew = false)
         {
+            if (asNew)
+            {
+                entity.StructureId = Guid.NewGuid();
+
+                foreach (var d in details)
+                {
+                    d.StructureId = entity.StructureId;
+                    d.StructureDetailId = Guid.NewGuid();
+                }
+            }
+
             using (var app = new BusinessDataContext(cs))
             {
                 if (!IsExist(cs, entity.StructureId))
                 {
+                    entity.StructureId = Guid.NewGuid();
+                    entity.DateCreated = DateTime.Now;
+                    details.ForEach(d => d.StructureId = entity.StructureId);
+
                     app.Structures.InsertOnSubmit(entity);
                     app.StructureDetails.InsertAllOnSubmit(details);
                     app.SubmitChanges();
                 }
                 else
                 {
-                    //TODO: UPDATE
-                    //var det = app.TournamentDetails.SingleOrDefault(td => td.TournamentId == entity.TournamentId);
-                    //det.AddOnPrize = details.AddOnPrize;
-                    //det.AddOnStack = details.AddOnStack;
-                    //det.BonusStack = details.BonusStack;
-                    //det.BuyInPrize = details.BuyInPrize;
-                    //det.BuyInStack = details.BuyInStack;
-                    //det.GTD = details.GTD;
-                    //det.IsFullPointed = details.IsFullPointed;
-                    //det.IsLeague = details.IsLeague;
-                    //det.ReBuyCount = details.ReBuyCount;
-                    //det.ReBuyPrize = details.ReBuyPrize;
-                    //det.ReBuyStack = details.ReBuyStack;
-                    //det.ReEntryCount = details.ReEntryCount;
-                    //det.StructureId = details.StructureId;
+                    var dbList = app.StructureDetails.Where(sd => sd.StructureId == entity.StructureId).ToList();
 
-                    //app.SubmitChanges();
+                    foreach (var sd in details)
+                    {
+                        var detail = app.StructureDetails.SingleOrDefault(d => d.StructureDetailId == sd.StructureDetailId);
+
+                        if (detail != null)
+                        {
+                            detail.Number = sd.Number;
+                            detail.Ante = sd.Ante;
+                            detail.BigBlind = sd.BigBlind;
+                            detail.Level = sd.Level;
+                            detail.SmallBlind = sd.SmallBlind;
+                            detail.Time = sd.Time;
+                            detail.Type = sd.Type;
+
+                            app.SubmitChanges();
+                        }
+                        else
+                        {
+                            app.StructureDetails.InsertOnSubmit(sd);
+                            app.SubmitChanges();
+                        }
+                    }
+
+                    foreach (var dbItem in dbList)
+                    {
+                        if(!details.Select(d => d.StructureDetailId).Contains(dbItem.StructureDetailId))
+                        {
+                            app.StructureDetails.DeleteOnSubmit(dbItem);
+                            app.SubmitChanges();
+                        }
+                    }
                 }
             }
         }
@@ -63,6 +94,16 @@ namespace PokerTimer.BusinessObjects.Data
                 var t = app.Structures.SingleOrDefault(u => u.StructureId == id);
 
                 return t.IsNotNull();
+            }
+        }
+
+        public static void Delete(eConnectionString cs, Guid id)
+        {
+            using (var app = new BusinessDataContext(cs))
+            {
+                var toDel = app.Structures.SingleOrDefault(s => s.StructureId == id);
+                toDel.DateDeleted = DateTime.Now;
+                app.SubmitChanges();
             }
         }
     }
